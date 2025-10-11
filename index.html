@@ -52,12 +52,13 @@
         }
         
         .profile-img {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             border: 4px solid var(--accent);
             margin-bottom: 20px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            object-fit: cover;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
         }
         
         .name {
@@ -227,6 +228,11 @@
             .section {
                 padding: 50px 0;
             }
+            
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
         }
     </style>
 </head>
@@ -234,7 +240,10 @@
     <!-- Header -->
     <header class="header">
         <div class="container">
-            <div class="profile-img"></div>
+            <!-- Replace this src with your actual image path -->
+            <img src="https://drive.google.com/uc?export=view&id=1r2ErZ7iea9WJl5IkuvanXdIJs2KvSqAb" 
+                 alt="Yashwanth Nagaraboina" 
+                 class="profile-img">
             <h1 class="name">Yashwanth Nagaraboina</h1>
             <p class="tagline">Senior Software Engineer | Java | AWS | Microservices</p>
             <p>Building scalable, high-performance systems with 3.6+ years of experience</p>
