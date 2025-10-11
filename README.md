@@ -26,6 +26,7 @@
 🤔 **I'm looking for help with** Deep dives into Advanced Java & Data Science  
 💬 **Ask me about** Java, Spring Boot, Microservices, Kafka, AWS, JavaScript  
 😄 **Pronouns:** He/Him  
+
 ### ⚡ **Developer Fun Facts** 
 <div align="center">
  <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 15px; margin: 10px; border: 3px solid #00D4FF;">
@@ -86,6 +87,9 @@
 ### 📬 **Reach Out To Me**
 
 <p align="center">
+  <a href="https://yashwanthnagaraboina.github.io/">
+    <img src="https://img.shields.io/badge/Portfolio-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Portfolio"/>
+  </a>
   <a href="mailto:yashwantharya465@gmail.com">
     <img src="https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail"/>
   </a>
@@ -109,9 +113,17 @@
 
 <div align="center">
 
-
 <table align="center">
   <tr>
+    <td align="center">
+      <a href="https://yashwanthnagaraboina.github.io/">
+        <img src="https://img.icons8.com/color/96/000000/domain.png" width="60" alt="Portfolio"/>
+      </a>
+      <br>
+      <b>Portfolio</b>
+      <br>
+      <code>yashwanthnagaraboina.github.io</code>
+    </td>
     <td align="center">
       <a href="mailto:yashwantharya465@gmail.com">
         <img src="https://img.icons8.com/color/96/000000/gmail.png" width="60" alt="Email"/>
@@ -149,6 +161,7 @@
 <div align="center">
 
 ```bash
+🌐 Portfolio: yashwanthnagaraboina.github.io
 📧 Email:    yashwantharya465@gmail.com
 💼 LinkedIn: linkedin.com/in/nagaraboina-yashwanth-b5298121b
 🐙 GitHub:   github.com/yashwanthNagaraboina
