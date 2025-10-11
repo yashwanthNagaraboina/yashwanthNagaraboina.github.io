@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yashwanth Nagaraboina - Java AWS Developer</title>
+    <style>
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #00D4FF;
+            --dark: #0f0f23;
+            --light: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: var(--light);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="%23ffffff10"><polygon points="1000,100 1000,0 0,100"/></svg>');
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--accent);
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+        }
+        
+        .name {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, var(--accent), #FF6B6B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--accent);
+        }
+        
+        /* About */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-text {
+            font-size: 1.1rem;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .skill-category h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            background: rgba(255,255,255,0.1);
+            margin: 5px 0;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        /* Experience */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline-item {
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .timeline-date {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+        
+        .project-title {
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .tech-tag {
+            background: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        /* Contact */
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-link {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-link:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        .footer {
+            background: rgba(0,0,0,0.5);
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .name {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 50px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="profile-img"></div>
+            <h1 class="name">Yashwanth Nagaraboina</h1>
+            <p class="tagline">Senior Software Engineer | Java | AWS | Microservices</p>
+            <p>Building scalable, high-performance systems with 3.6+ years of experience</p>
+        </div>
+    </header>
+
+    <!-- About -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Results-driven Java Developer with 3.6 years of experience in Spring Boot, Microservices, Cloud-Native Applications, and AWS. Passionate about designing high-performance, scalable, and fault-tolerant systems.</p>
+                    <br>
+                    <p>🔭 Currently working on real-time payment systems at scale</p>
+                    <p>🌱 Learning Data Science & AI</p>
+                    <p>💡 Ask me about Java, Spring Boot, Microservices, Kafka, AWS</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Backend</h3>
+                        <ul class="skill-list">
+                            <li>Java 8/17</li>
+                            <li>Spring Boot</li>
+                            <li>Microservices</li>
+                            <li>Apache Kafka</li>
+                            <li>REST APIs</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Cloud & DevOps</h3>
+                        <ul class="skill-list">
+                            <li>AWS (EC2, S3, EKS)</li>
+                            <li>Docker & Kubernetes</li>
+                            <li>Terraform</li>
+                            <li>Jenkins</li>
+                            <li>CloudWatch</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section" id="experience" style="background: rgba(255,255,255,0.02);">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">07/2024 – Present</div>
+                    <h3>Senior Software Engineer - Mphasis LTD</h3>
+                    <p>Working on real-time payment systems and cloud-native applications.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">06/2022 – 06/2024</div>
+                    <h3>Software Engineer - Mphasis LTD</h3>
+                    <p>Developed microservices and backend systems for enterprise applications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section" id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3 class="project-title">Real Time Payments - Orchestrator</h3>
+                    <p>JP Morgan Chase - Developed and deployed REST APIs using Spring Boot, enhancing service reliability and reusability.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Java 17</span>
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">Kafka</span>
+                        <span class="tech-tag">AWS</span>
+                        <span class="tech-tag">Kubernetes</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3 class="project-title">CCB Home Lending - Mortgage Engine</h3>
+                    <p>JP Morgan Chase - Designed event-driven microservices for real-time mortgage loan processing, reducing loan cycle time by 30%.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Java 17</span>
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">Angular 14</span>
+                        <span class="tech-tag">Drools</span>
+                        <span class="tech-tag">AWS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements -->
+    <section class="section" id="achievements" style="background: rgba(255,255,255,0.02);">
+        <div class="container">
+            <h2 class="section-title">Achievements</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3 class="project-title">🏆 Kudos Award - JP Morgan Chase (2025)</h3>
+                    <p>Recognized as top consistent performer for leading interface design under tight deadlines.</p>
+                </div>
+                <div class="project-card">
+                    <h3 class="project-title">🏆 Laurel Award - JP Morgan Chase (2024)</h3>
+                    <p>For exceptional 'can-do' attitude in team collaboration and streamlined workflows.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-links">
+                <a href="mailto:yashwantharya465@gmail.com" class="contact-link">
+                    📧 Email
+                </a>
+                <a href="https://linkedin.com/in/nagaraboina-yashwanth-b5298121b" class="contact-link">
+                    💼 LinkedIn
+                </a>
+                <a href="https://github.com/yashwanthNagaraboina" class="contact-link">
+                    🐙 GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Yashwanth Nagaraboina. Built with ❤️ and ☕</p>
+        </div>
+    </footer>
+</body>
+</html>
