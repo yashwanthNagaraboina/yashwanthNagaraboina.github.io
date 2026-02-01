@@ -14,9 +14,25 @@
 body{
   margin:0;
   font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
   color:#fff;
   overflow-x:hidden;
+  background: radial-gradient(circle at center, #ff7a9a, #f6b3c3 40%, #c08bd7 100%);
+}
+
+/* Decorative animated hearts */
+.heart{
+  position:fixed;
+  width:18px;
+  height:18px;
+  background: rgba(255,255,255,0.9);
+  transform: rotate(45deg);
+  border-radius: 4px;
+  animation: drift 8s linear infinite;
+}
+@keyframes drift{
+  0% { transform: translateY(-20px) rotate(45deg); opacity:0; }
+  10% { opacity:1; }
+  100% { transform: translateY(110vh) rotate(45deg); opacity:0; }
 }
 
 /* ---------- GLOBAL ---------- */
@@ -154,7 +170,7 @@ button{
   color:#333;
   padding:30px;
   border-radius:20px;
-  max-width:320px;
+  max-width:340px;
 }
 .scratch{
   margin-top:20px;
@@ -163,10 +179,43 @@ button{
   border-radius:10px;
   cursor:pointer;
 }
+
+.slide{
+  margin-top:20px;
+  font-size:18px;
+  color:#ff2d7f;
+  font-weight:600;
+  opacity:0;
+  animation:slidein 2s forwards;
+}
+@keyframes slidein{
+  0%{transform:translateX(-50px); opacity:0;}
+  100%{transform:translateX(0); opacity:1;}
+}
+
+.glitter{
+  background: linear-gradient(90deg,#ff6a9c,#fff,#ff6a9c);
+  background-size:200% 200%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation:shine 3s linear infinite;
+}
+@keyframes shine{
+  0%{background-position:0%}
+  100%{background-position:100%}
+}
 </style>
 </head>
 
 <body>
+
+<!-- Decorative floating hearts -->
+<div class="heart" style="left:12%; animation-duration:7s;"></div>
+<div class="heart" style="left:28%; animation-duration:8s;"></div>
+<div class="heart" style="left:46%; animation-duration:9s;"></div>
+<div class="heart" style="left:68%; animation-duration:6.5s;"></div>
+<div class="heart" style="left:82%; animation-duration:8.2s;"></div>
 
 <!-- LANDING -->
 <section id="landing" class="active">
@@ -225,6 +274,11 @@ button{
     <div class="scratch" onclick="scratch(this)">
       Scratch for Candle Light Dinner ✨
     </div>
+
+    <div id="slideMsg" class="slide">
+      <span class="glitter">How about a candle light dinner?</span><br/>
+      <span>With loves, hugs, kisses from him (2_1)</span>
+    </div>
   </div>
 </div>
 
@@ -244,20 +298,29 @@ pNo.onmouseover=()=>{pNo.style.left=Math.random()*80+"%";pNo.style.top=Math.rand
 
 /* Cards */
 const topics=[
-"Health & Fitness","Work & Business","Our First Flight ✈️","Pep Talks",
-"Our Business","Trips","Viewpoint Cuddles","Romantic Talks",
-"Outfits & Accessories","Love you Ammu ❤️ Happy Valentine’s Day"
+  "Health & Fitness",
+  "Work & Business",
+  "Our First Flight ✈️",
+  "Pep Talks",
+  "Building Business Together",
+  "Trips",
+  "Viewpoint Cuddles",
+  "Romantic Talks",
+  "Outfits & Accessories",
+  "Independent World, Dependent Hearts",
+  ""  // 11th card empty front
 ];
+
 const grid=document.getElementById("cardGrid");
-topics.forEach(t=>{
+topics.forEach((t,i)=>{
   const c=document.createElement("div");
   c.className="card";
   c.innerHTML=`
     <div class="inner">
-      <div class="face front">${t}</div>
+      <div class="face front">${t || ""}</div>
       <div class="face back">
-        <img src="https://picsum.photos/400/300?random=${Math.random()}">
-        <p>${t}<br><b>My forever Valentine 💖</b></p>
+        <img src="https://images.unsplash.com/photo-1520975693410-2a1a0f4e1a7b?auto=format&fit=crop&w=900&q=80">
+        <p>${i===10 ? "Love you Ammu ❤️<br>Happy Valentine’s Day.<br>My forever Valentine" : t + "<br><b>With love, trust & laughter 💖</b>"}</p>
       </div>
     </div>`;
   c.onclick=()=>c.querySelector(".inner").classList.toggle("flip");
@@ -281,7 +344,8 @@ function openCoupon(){
   document.getElementById("popup").classList.add("show");
 }
 function scratch(el){
-  el.innerHTML="With Kisses 😘 and Hugs 🤗 from him (2_1)";
+  el.style.display="none";
+  document.getElementById("slideMsg").style.display="block";
 }
 </script>
 
