@@ -2,94 +2,121 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Will You Be My Valentine 💖</title>
+<title>My Valentine 💖</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
-* { box-sizing: border-box; }
+*{box-sizing:border-box}
 
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg,#ff9a9e,#fad0c4);
-  color: #fff;
-  text-align: center;
-  overflow-x: hidden;
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  color:#fff;
+  overflow-x:hidden;
 }
 
-section {
-  min-height: 100vh;
-  display: none;
-  padding: 40px 20px;
+/* ---------- GLOBAL ---------- */
+section{
+  min-height:100vh;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+}
+section.active{display:flex}
+
+.center{
+  max-width:900px;
+  width:100%;
 }
 
-section.active { display: block; }
-
-h1, h2 { margin-bottom: 20px; }
-
-button {
-  padding: 14px 26px;
-  font-size: 16px;
-  border-radius: 30px;
-  border: none;
-  cursor: pointer;
-  margin: 10px;
+/* ---------- LANDING ---------- */
+.marquee{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(2.2rem,5vw,4rem);
+  white-space:nowrap;
+  overflow:hidden;
+}
+.marquee span{
+  display:inline-block;
+  padding-left:100%;
+  animation:scroll 12s linear infinite;
+}
+@keyframes scroll{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-100%)}
 }
 
-.yes { background:#ff4d6d; color:#fff; }
-.defyes { background:#ff006e; color:#fff; }
-.no {
+.buttons{
+  margin-top:40px;
+}
+button{
+  padding:14px 32px;
+  border-radius:30px;
+  border:none;
+  font-size:16px;
+  cursor:pointer;
+  margin:10px;
+}
+.yes{background:#ff4d6d;color:#fff}
+.defyes{background:#ff006e;color:#fff}
+
+/* ---------- YES FLOW ---------- */
+.emoji{
+  font-size:80px;
+}
+.partial{
+  margin-top:40px;
+}
+.no{
   background:#333;
   color:#fff;
   position:absolute;
 }
 
-.cards {
+/* ---------- CARDS ---------- */
+.cards{
   display:grid;
-  grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
   gap:20px;
-  margin-top:30px;
+  margin-top:40px;
 }
-
-.card {
+.card{
   perspective:1000px;
 }
-
-.card-inner {
+.inner{
   height:240px;
-  transition:transform 0.8s;
+  transition:transform .8s;
   transform-style:preserve-3d;
   cursor:pointer;
 }
-
-.card-inner.flipped {
-  transform:rotateY(180deg);
-}
-
-.face {
+.inner.flip{transform:rotateY(180deg)}
+.face{
   position:absolute;
   width:100%;
   height:100%;
   backface-visibility:hidden;
   border-radius:16px;
+  padding:15px;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:15px;
 }
-
-.front {
-  background:rgba(255,255,255,0.25);
+.front{
+  background:rgba(255,255,255,.25);
 }
-
-.back {
+.back{
   background:#fff;
   color:#333;
   transform:rotateY(180deg);
   flex-direction:column;
 }
-
-.back img {
+.back img{
   width:100%;
   height:120px;
   object-fit:cover;
@@ -97,140 +124,164 @@ button {
   margin-bottom:10px;
 }
 
-.toggle {
-  margin-top:30px;
-  font-size:18px;
+/* ---------- DEFINITELY YES ---------- */
+.shower span{
+  position:fixed;
+  animation:fall linear infinite;
+  top:-10%;
+  font-size:24px;
+}
+@keyframes fall{
+  to{transform:translateY(110vh)}
 }
 
-.popup {
+.renew{
+  margin-top:40px;
+}
+
+/* ---------- POPUP ---------- */
+.popup{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.6);
+  background:rgba(0,0,0,.6);
   display:none;
   align-items:center;
   justify-content:center;
 }
-
-.popup.show { display:flex; }
-
-.popup-box {
+.popup.show{display:flex}
+.box{
   background:#fff;
   color:#333;
   padding:30px;
   border-radius:20px;
   max-width:320px;
 }
+.scratch{
+  margin-top:20px;
+  background:#ccc;
+  padding:20px;
+  border-radius:10px;
+  cursor:pointer;
+}
 </style>
 </head>
 
 <body>
 
-<!-- STEP 1 -->
-<section id="step1" class="active">
-  <h1>Will you be my Valentine, <b>Sweashika</b>? 💕</h1>
+<!-- LANDING -->
+<section id="landing" class="active">
+  <div class="center">
+    <div class="marquee">
+      <span>Will you be my Valentine!! 💖 Sweashika 💖</span>
+    </div>
 
-  <button class="yes" onclick="goYes()">Yes 💖</button>
-  <button class="defyes" onclick="goDef()">Definitely Yes 😍</button>
-  <button class="no" id="noBtn">No 😏</button>
+    <div class="buttons">
+      <button class="yes" onclick="goYes()">Yes 💕</button>
+      <button class="defyes" onclick="goDef()">Definitely Yes 😍</button>
+    </div>
+  </div>
 </section>
 
-<!-- STEP 2 -->
-<section id="step2">
-  <h2>Okay… but what about a *halfway yes*? 😉</h2>
-  <p>Try this halfway yes and see how beautiful our <b>2026</b> might be ✨</p>
+<!-- YES -->
+<section id="yes">
+  <div class="center">
+    <div class="emoji">🥹💖</div>
+    <h2>AWWWWWW</h2>
 
-  <button class="yes" onclick="goCards()">Halfway Yes 💫</button>
-  <button class="no" id="partialNo">Partial No 😌</button>
+    <div class="partial">
+      <p>What made you think <b>Halfway Yes</b>? 😌</p>
+      <button class="yes" onclick="goCards()">Click Yes to see how beautiful our 2026 gonna look like ✨</button>
+      <button class="no" id="partialNo">Partial No 😏</button>
+    </div>
+  </div>
 </section>
 
-<!-- STEP 3 -->
-<section id="step3">
-  <h2>Our Beautiful Future 💞</h2>
-
-  <div class="cards" id="cards"></div>
+<!-- CARDS -->
+<section id="cards">
+  <div class="center">
+    <h2>Our Beautiful 2026 💞</h2>
+    <div class="cards" id="cardGrid"></div>
+  </div>
 </section>
 
-<!-- STEP 4 -->
-<section id="step4">
-  <h2>Love you ammu ❤️</h2>
+<!-- DEFINITELY YES -->
+<section id="def">
+  <div class="center">
+    <h1>Love you sweetheart ❤️🌹</h1>
+    <p>Forever & always</p>
 
-  <div class="toggle">
-    <label>
-      <input type="checkbox" onchange="showCoupon()" />
-      Renew our love 💍
-    </label>
+    <div class="renew">
+      <button class="yes" onclick="openCoupon()">Renew your love 💍</button>
+    </div>
   </div>
 </section>
 
 <!-- POPUP -->
 <div class="popup" id="popup">
-  <div class="popup-box">
-    <h2>🎉 Hurray!!! 🎉</h2>
-    <p>You won a coupon to the <b>Best Biryani in Hyderabad</b> 🍗🔥</p>
-    <p><b>Kisses 😘 Hugs 🤗 from him</b></p>
-    <button onclick="closePopup()">Aww ❤️</button>
+  <div class="box">
+    <h3>🎉 Hurray!</h3>
+    <p>You won a coupon for the <b>Best Biryani</b> 🍗🔥</p>
+
+    <div class="scratch" onclick="scratch(this)">
+      Scratch for Candle Light Dinner ✨
+    </div>
   </div>
 </div>
 
 <script>
-const sections = ["step1","step2","step3","step4"];
-const noBtn = document.getElementById("noBtn");
-const partialNo = document.getElementById("partialNo");
-
+const sections=["landing","yes","cards","def"];
 function show(id){
   sections.forEach(s=>document.getElementById(s).classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
+function goYes(){show("yes")}
+function goCards(){show("cards")}
+function goDef(){show("def");shower()}
 
-/* No button escape */
-function dodge(btn){
-  btn.style.left = Math.random()*80 + "%";
-  btn.style.top = Math.random()*80 + "%";
-}
-noBtn.onmouseover = ()=>dodge(noBtn);
-partialNo.onmouseover = ()=>dodge(partialNo);
-
-/* Navigation */
-function goYes(){ show("step2"); }
-function goDef(){ show("step4"); }
-function goCards(){ show("step3"); }
+/* Escaping button */
+const pNo=document.getElementById("partialNo");
+pNo.onmouseover=()=>{pNo.style.left=Math.random()*80+"%";pNo.style.top=Math.random()*80+"%"}
 
 /* Cards */
-const topics = [
-  "Health & Fitness",
-  "Work & Business Growth",
-  "Our First Flight ✈️",
-  "Small Pep Talks",
-  "Building Business Together",
-  "Trips & Adventures",
-  "Viewpoint Cuddles",
-  "Romantic Talks",
-  "Outfits & Accessories",
-  "Independent World, Dependent Hearts"
+const topics=[
+"Health & Fitness","Work & Business","Our First Flight ✈️","Pep Talks",
+"Our Business","Trips","Viewpoint Cuddles","Romantic Talks",
+"Outfits & Accessories","Love you Ammu ❤️ Happy Valentine’s Day"
 ];
-
-const cards = document.getElementById("cards");
+const grid=document.getElementById("cardGrid");
 topics.forEach(t=>{
-  const card = document.createElement("div");
-  card.className="card";
-  card.innerHTML=`
-    <div class="card-inner">
+  const c=document.createElement("div");
+  c.className="card";
+  c.innerHTML=`
+    <div class="inner">
       <div class="face front">${t}</div>
       <div class="face back">
-        <img src="https://picsum.photos/300/200?random=${Math.random()}">
-        <p>${t}<br><b>With love, trust & laughter 💖</b></p>
+        <img src="https://picsum.photos/400/300?random=${Math.random()}">
+        <p>${t}<br><b>My forever Valentine 💖</b></p>
       </div>
     </div>`;
-  card.onclick=()=>card.querySelector(".card-inner").classList.toggle("flipped");
-  cards.appendChild(card);
+  c.onclick=()=>c.querySelector(".inner").classList.toggle("flip");
+  grid.appendChild(c);
 });
 
-/* Popup */
-function showCoupon(){
+/* Love shower */
+function shower(){
+  for(let i=0;i<40;i++){
+    const s=document.createElement("span");
+    s.innerHTML=Math.random()>0.5?"❤️":"🌹";
+    s.style.left=Math.random()*100+"%";
+    s.style.animationDuration=3+Math.random()*5+"s";
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),8000);
+  }
+}
+
+/* Coupon */
+function openCoupon(){
   document.getElementById("popup").classList.add("show");
 }
-function closePopup(){
-  document.getElementById("popup").classList.remove("show");
+function scratch(el){
+  el.innerHTML="With Kisses 😘 and Hugs 🤗 from him (2_1)";
 }
 </script>
 
