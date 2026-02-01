@@ -180,19 +180,23 @@ button{
   cursor:pointer;
 }
 
+/* Hidden by default */
 .slide{
   margin-top:20px;
-  font-size:18px;
+  font-size:20px;
   color:#ff2d7f;
-  font-weight:600;
+  font-weight:700;
   opacity:0;
+  display:none;
   animation:slidein 2s forwards;
 }
+
 @keyframes slidein{
   0%{transform:translateX(-50px); opacity:0;}
   100%{transform:translateX(0); opacity:1;}
 }
 
+/* Glitter diamond text */
 .glitter{
   background: linear-gradient(90deg,#ff6a9c,#fff,#ff6a9c);
   background-size:200% 200%;
@@ -276,8 +280,8 @@ button{
     </div>
 
     <div id="slideMsg" class="slide">
-      <span class="glitter">How about a candle light dinner?</span><br/>
-      <span>With loves, hugs, kisses from him (2_1)</span>
+      <span class="glitter">How about Candle light Dinner?</span><br/>
+      <span>- loves, hugs, kisses from him (2_1)</span>
     </div>
   </div>
 </div>
@@ -296,7 +300,21 @@ function goDef(){show("def");shower()}
 const pNo=document.getElementById("partialNo");
 pNo.onmouseover=()=>{pNo.style.left=Math.random()*80+"%";pNo.style.top=Math.random()*80+"%"}
 
-/* Cards */
+/* Romantic images (reliable unsplash links) */
+const images=[
+  "https://images.unsplash.com/photo-1509223197845-458d87318791?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1520975693410-2a1a0f4e1a7b?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1520975685857-20b6f5f87f4c?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1520975686027-15f0a3c1b7b4?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1520975693472-8b47c7f0c9bb?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1520975693444-4d0b9e7d4c7c?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1520975693448-9d88e5d1f6f3?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1520975693448-9d88e5d1f6f3?auto=format&fit=crop&w=900&q=80"
+];
+
 const topics=[
   "Health & Fitness",
   "Work & Business",
@@ -308,7 +326,7 @@ const topics=[
   "Romantic Talks",
   "Outfits & Accessories",
   "Independent World, Dependent Hearts",
-  ""  // 11th card empty front
+  "" // last card hidden text
 ];
 
 const grid=document.getElementById("cardGrid");
@@ -319,7 +337,7 @@ topics.forEach((t,i)=>{
     <div class="inner">
       <div class="face front">${t || ""}</div>
       <div class="face back">
-        <img src="https://images.unsplash.com/photo-1520975693410-2a1a0f4e1a7b?auto=format&fit=crop&w=900&q=80">
+        <img src="${images[i]}">
         <p>${i===10 ? "Love you Ammu ❤️<br>Happy Valentine’s Day.<br>My forever Valentine" : t + "<br><b>With love, trust & laughter 💖</b>"}</p>
       </div>
     </div>`;
@@ -345,7 +363,9 @@ function openCoupon(){
 }
 function scratch(el){
   el.style.display="none";
-  document.getElementById("slideMsg").style.display="block";
+  const msg=document.getElementById("slideMsg");
+  msg.style.display="block";
+  msg.style.opacity=1;
 }
 </script>
 
