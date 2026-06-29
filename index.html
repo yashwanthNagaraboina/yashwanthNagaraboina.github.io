@@ -1,1 +1,813 @@
-hi
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Yash Arya — Backend Engineer · 1% Prep</title>
+<meta name="description" content="Yashwanth (Yash Arya) — Backend Engineer. Resume and a 1% compounding prep tracker for DSA, System Design, LLD, Java, SQL and AI." />
+
+<!--
+  ============================================================
+  EDIT YOUR DETAILS HERE  →  search for  "EDIT:"  through this file.
+  The big blocks to personalise:
+   1. PROFILE constant (just below, in the <script>)  — name, role, links
+   2. The Resume sections in the HTML (About / Skills / Experience / Projects)
+   3. SEED data (starter rows for each tracker) — replace or clear freely
+  Re-upload your resume PDF and I'll wire in exact skills + projects.
+  ============================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#0c1322;          /* blueprint navy base */
+  --panel:#121c30;        /* raised panel */
+  --panel-2:#0f1827;      /* table stripe */
+  --line:#22304d;         /* hairline */
+  --line-soft:#1a2438;
+  --text:#e9eefb;         /* primary text */
+  --muted:#8ba0c4;        /* secondary text */
+  --faint:#5c6f93;        /* tertiary */
+  --amber:#ffc24b;        /* compounding gains */
+  --amber-deep:#e9a42c;
+  --cyan:#46d6c4;         /* progress / active */
+  --cyan-deep:#2bb6a6;
+  --danger:#ff6b6b;
+  --radius:14px;
+  --radius-sm:9px;
+  --maxw:1120px;
+  --shadow:0 18px 50px -20px rgba(0,0,0,.7);
+  --fdisp:'Space Grotesk',system-ui,sans-serif;
+  --fbody:'Inter',system-ui,sans-serif;
+  --fmono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--ink);color:var(--text);
+  font-family:var(--fbody);line-height:1.6;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+/* blueprint grid atmosphere */
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--line-soft) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(120% 90% at 50% 0%,#000 0%,transparent 78%);
+          mask-image:radial-gradient(120% 90% at 50% 0%,#000 0%,transparent 78%);
+  opacity:.5;
+}
+body::after{
+  content:"";position:fixed;top:-30%;right:-20%;width:60vw;height:60vw;z-index:0;
+  pointer-events:none;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,194,75,.10),transparent 60%);
+  filter:blur(20px);
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;position:relative;z-index:1}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--fdisp);font-weight:600;letter-spacing:-.02em;line-height:1.08;margin:0}
+.eyebrow{font-family:var(--fmono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan)}
+.mono{font-family:var(--fmono)}
+
+/* ---------- top bar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:50;backdrop-filter:blur(11px);
+  background:rgba(12,19,34,.74);border-bottom:1px solid var(--line);
+}
+.topbar .row{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.brand{display:flex;align-items:center;gap:11px;font-family:var(--fdisp);font-weight:700;font-size:1.02rem}
+.brand .key{
+  width:30px;height:30px;border-radius:8px;display:grid;place-items:center;flex:0 0 auto;
+  background:linear-gradient(135deg,var(--amber),var(--amber-deep));color:#3a2400;
+  font-family:var(--fmono);font-weight:700;font-size:.86rem;box-shadow:0 6px 16px -6px rgba(255,194,75,.6);
+}
+.brand small{display:block;font-family:var(--fmono);font-weight:400;font-size:.62rem;letter-spacing:.16em;color:var(--faint);text-transform:uppercase}
+.toggle{display:flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:999px;background:var(--panel-2)}
+.toggle button{
+  appearance:none;border:0;cursor:pointer;font-family:var(--fmono);font-size:.74rem;letter-spacing:.04em;
+  padding:7px 15px;border-radius:999px;background:transparent;color:var(--muted);transition:.22s;
+}
+.toggle button[aria-pressed="true"]{background:var(--text);color:var(--ink);font-weight:600}
+.toggle button:hover:not([aria-pressed="true"]){color:var(--text)}
+
+/* ---------- hero ---------- */
+.hero{padding:84px 0 56px;position:relative}
+.hero .status{display:inline-flex;align-items:center;gap:8px;font-family:var(--fmono);font-size:.74rem;color:var(--muted);margin-bottom:22px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 0 rgba(70,214,196,.7);animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(70,214,196,.55)}70%{box-shadow:0 0 0 9px rgba(70,214,196,0)}100%{box-shadow:0 0 0 0 rgba(70,214,196,0)}}
+.hero h1{font-size:clamp(2.6rem,7vw,5rem);font-weight:700}
+.hero h1 .alias{color:var(--amber)}
+.hero .role{font-family:var(--fdisp);font-weight:500;font-size:clamp(1.05rem,2.6vw,1.5rem);color:var(--muted);margin-top:14px}
+.hero .thesis{max-width:560px;margin-top:20px;color:var(--muted);font-size:1.02rem}
+.hero .thesis b{color:var(--text);font-weight:600}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.chip{
+  display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border:1px solid var(--line);
+  border-radius:999px;background:var(--panel);font-family:var(--fmono);font-size:.78rem;color:var(--muted);
+  transition:.2s;
+}
+.chip:hover{border-color:var(--cyan);color:var(--text);transform:translateY(-2px)}
+.chip .ic{width:15px;height:15px;color:var(--cyan)}
+.chip.primary{background:linear-gradient(135deg,var(--amber),var(--amber-deep));color:#3a2400;border-color:transparent;font-weight:600}
+.chip.primary .ic{color:#3a2400}
+.chip.primary:hover{color:#3a2400}
+
+/* ---------- sections ---------- */
+section.block{padding:54px 0;border-top:1px solid var(--line-soft)}
+.block .head{display:flex;align-items:baseline;gap:14px;margin-bottom:30px}
+.block .head .no{font-family:var(--fmono);color:var(--faint);font-size:.8rem}
+.block h2{font-size:clamp(1.5rem,4vw,2.1rem)}
+.lead{color:var(--muted);max-width:680px}
+
+/* skills */
+.skillgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.skillcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.skillcard h3{font-size:1rem;display:flex;align-items:center;gap:9px;margin-bottom:13px}
+.skillcard h3 .tick{color:var(--cyan)}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tag{font-family:var(--fmono);font-size:.72rem;padding:5px 10px;border-radius:7px;background:var(--panel-2);border:1px solid var(--line);color:var(--muted)}
+
+/* experience timeline */
+.tl{position:relative;margin-left:6px}
+.tl .item{position:relative;padding:0 0 28px 30px;border-left:2px solid var(--line)}
+.tl .item:last-child{border-left-color:transparent}
+.tl .item::before{content:"";position:absolute;left:-7px;top:3px;width:12px;height:12px;border-radius:50%;background:var(--ink);border:2px solid var(--amber)}
+.tl .when{font-family:var(--fmono);font-size:.74rem;color:var(--cyan);letter-spacing:.04em}
+.tl h3{font-size:1.12rem;margin:5px 0 3px}
+.tl .org{color:var(--muted);font-size:.92rem;margin-bottom:8px}
+.tl ul{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:.94rem}
+.tl ul li{margin-bottom:4px}
+
+/* projects */
+.projgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.proj{
+  background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);
+  border-radius:var(--radius);padding:22px;position:relative;overflow:hidden;transition:.25s;
+}
+.proj::after{content:"";position:absolute;inset:0;border-radius:inherit;border:1px solid transparent;transition:.25s}
+.proj:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.proj:hover::after{border-color:rgba(70,214,196,.4)}
+.proj .pno{font-family:var(--fmono);font-size:.74rem;color:var(--amber)}
+.proj h3{font-size:1.16rem;margin:10px 0 9px}
+.proj p{color:var(--muted);font-size:.93rem;margin:0 0 14px}
+.proj .tags .tag{font-size:.68rem}
+
+/* contact */
+.contact-cta{
+  background:linear-gradient(135deg,var(--panel),var(--panel-2));border:1px solid var(--line);
+  border-radius:var(--radius);padding:34px;text-align:center
+}
+.contact-cta h2{margin-bottom:10px}
+.contact-cta p{color:var(--muted);max-width:480px;margin:0 auto 22px}
+
+/* ================= PREP VIEW ================= */
+#prep-view{display:none}
+#prep-view.active{display:block}
+#resume-view.hidden{display:none}
+
+.console{padding:46px 0 8px}
+.console .topline{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between}
+.console h1{font-size:clamp(2rem,5vw,3.1rem)}
+.console .sub{color:var(--muted);margin-top:10px;max-width:520px}
+/* signature: compounding meter */
+.compound{
+  background:linear-gradient(135deg,rgba(255,194,75,.12),rgba(70,214,196,.06));
+  border:1px solid var(--line);border-radius:var(--radius);padding:20px 24px;min-width:230px;
+}
+.compound .lab{font-family:var(--fmono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.compound .mult{font-family:var(--fdisp);font-weight:700;font-size:2.6rem;line-height:1;margin:8px 0 4px;
+  background:linear-gradient(120deg,var(--amber),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.compound .eq{font-family:var(--fmono);font-size:.78rem;color:var(--muted)}
+.compound .bar{height:7px;border-radius:99px;background:var(--panel-2);margin-top:14px;overflow:hidden;border:1px solid var(--line)}
+.compound .bar > i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--cyan),var(--amber));transition:width .6s ease}
+
+.quicklinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+
+/* tracker tabs */
+.tracktabs{display:flex;gap:6px;flex-wrap:wrap;margin:38px 0 0;border-bottom:1px solid var(--line);padding-bottom:0}
+.tracktab{
+  appearance:none;border:0;cursor:pointer;background:transparent;color:var(--muted);
+  font-family:var(--fmono);font-size:.8rem;padding:11px 14px;border-radius:8px 8px 0 0;position:relative;transition:.2s;
+}
+.tracktab .ct{font-size:.66rem;color:var(--faint);margin-left:6px}
+.tracktab:hover{color:var(--text)}
+.tracktab[aria-selected="true"]{color:var(--text);background:var(--panel)}
+.tracktab[aria-selected="true"]::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--amber)}
+
+/* toolbar */
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0}
+.search{flex:1 1 220px;min-width:180px;display:flex;align-items:center;gap:9px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-sm);padding:9px 13px}
+.search input{flex:1;background:transparent;border:0;outline:0;color:var(--text);font-family:var(--fbody);font-size:.9rem}
+.search input::placeholder{color:var(--faint)}
+.search .ic{width:15px;height:15px;color:var(--faint)}
+.btn{
+  appearance:none;cursor:pointer;font-family:var(--fmono);font-size:.78rem;border-radius:var(--radius-sm);
+  padding:9px 14px;border:1px solid var(--line);background:var(--panel);color:var(--text);transition:.18s;display:inline-flex;align-items:center;gap:7px
+}
+.btn:hover{border-color:var(--cyan)}
+.btn.accent{background:linear-gradient(135deg,var(--amber),var(--amber-deep));color:#3a2400;border-color:transparent;font-weight:600}
+.btn.ghost{background:transparent;color:var(--muted)}
+.btn .ic{width:14px;height:14px}
+
+/* table */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}
+table{width:100%;border-collapse:collapse;min-width:880px}
+thead th{
+  text-align:left;font-family:var(--fmono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--faint);padding:13px 14px;border-bottom:1px solid var(--line);white-space:nowrap;position:sticky;top:0;background:var(--panel)
+}
+tbody td{padding:13px 14px;border-bottom:1px solid var(--line-soft);font-size:.9rem;vertical-align:top;color:var(--text)}
+tbody tr:nth-child(even){background:var(--panel-2)}
+tbody tr:hover{background:rgba(70,214,196,.05)}
+td.prob{font-weight:500;min-width:200px}
+td.notes{color:var(--muted);max-width:260px}
+td.refs a{color:var(--cyan);font-family:var(--fmono);font-size:.78rem;word-break:break-all}
+.pill{display:inline-block;font-family:var(--fmono);font-size:.68rem;padding:4px 9px;border-radius:99px;border:1px solid var(--line)}
+.pill.platform{color:var(--muted);background:var(--panel-2)}
+.status{appearance:none;cursor:pointer;font-family:var(--fmono);font-size:.7rem;padding:5px 10px;border-radius:99px;border:1px solid var(--line);background:var(--panel-2);color:var(--muted)}
+.status[data-s="Done"]{color:#0c1f1b;background:var(--cyan);border-color:transparent;font-weight:600}
+.status[data-s="Doing"]{color:#3a2400;background:var(--amber);border-color:transparent;font-weight:600}
+.rowact{display:flex;gap:6px}
+.iconbtn{appearance:none;border:1px solid var(--line);background:var(--panel-2);color:var(--muted);cursor:pointer;width:30px;height:30px;border-radius:8px;display:grid;place-items:center;transition:.18s}
+.iconbtn:hover{color:var(--text);border-color:var(--cyan)}
+.iconbtn.del:hover{color:var(--danger);border-color:var(--danger)}
+.empty{padding:46px 20px;text-align:center;color:var(--muted)}
+.empty .big{font-family:var(--fdisp);font-size:1.1rem;color:var(--text);margin-bottom:6px}
+
+/* modal */
+.modal-bg{position:fixed;inset:0;z-index:100;background:rgba(5,9,17,.72);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px}
+.modal-bg.open{display:flex}
+.modal{width:min(560px,100%);max-height:90vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.modal header{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--line)}
+.modal header h3{font-size:1.1rem}
+.modal .body{padding:20px;display:grid;gap:14px}
+.field label{display:block;font-family:var(--fmono);font-size:.72rem;letter-spacing:.04em;color:var(--muted);margin-bottom:6px}
+.field input,.field textarea,.field select{
+  width:100%;background:var(--panel-2);border:1px solid var(--line);border-radius:var(--radius-sm);
+  padding:10px 12px;color:var(--text);font-family:var(--fbody);font-size:.92rem;outline:0;transition:.18s
+}
+.field textarea{resize:vertical;min-height:70px}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--cyan)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.modal footer{display:flex;justify-content:flex-end;gap:10px;padding:16px 20px;border-top:1px solid var(--line)}
+
+/* page footer */
+footer.foot{border-top:1px solid var(--line);padding:34px 0;color:var(--faint);font-family:var(--fmono);font-size:.76rem;text-align:center}
+footer.foot b{color:var(--amber)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.dot{animation:none}}
+@media (max-width:560px){
+  .grid2{grid-template-columns:1fr}
+  .topbar .row{height:58px}
+  .brand small{display:none}
+  .console .topline{flex-direction:column;align-items:stretch}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<header class="topbar">
+  <div class="wrap row">
+    <a class="brand" href="#top">
+      <span class="key" id="brandKey">YA</span>
+      <span>Yash Arya<small>Senior Backend · Java</small></span>
+    </a>
+    <div class="toggle" role="tablist" aria-label="View">
+      <button id="tabResume" role="tab" aria-pressed="true">Resume</button>
+      <button id="tabPrep" role="tab" aria-pressed="false">1% Prep</button>
+    </div>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<!-- ============ RESUME VIEW ============ -->
+<div id="resume-view">
+
+  <!-- HERO  · EDIT: name, role, thesis, links -->
+  <section class="hero"><div class="wrap reveal">
+    <div class="status"><span class="dot"></span> Open to Senior Backend / Platform roles · 2026</div>
+    <h1>Yashwanth <span class="alias">“Yash Arya”</span></h1>
+    <div class="role">Senior Backend Engineer — Java · Spring Boot · Microservices · AWS</div>
+    <p class="thesis">I design high-performance, fault-tolerant backend systems for banking — event-driven services on Kafka, cloud-native on AWS EKS. Off the clock I run a <b>1% prep system</b>: small reps, compounded daily. <b>(1.01)<sup>365</sup> ≈ 37.8×.</b></p>
+    <div class="links" id="heroLinks"><!-- populated from PROFILE.links --></div>
+  </div></section>
+
+  <!-- ABOUT  · EDIT -->
+  <section class="block"><div class="wrap reveal">
+    <div class="head"><span class="no">01</span><h2>About</h2></div>
+    <p class="lead">Results-driven Java developer with 4 years building enterprise backend systems in Spring Boot, Microservices, and cloud-native applications on AWS. I work in event-driven architectures — Kafka, GCP Pub/Sub — with a strong grasp of Low-Level Design, SOLID, design patterns, multithreading, and performance tuning. I've delivered services at 99.99% uptime, cut latency through profiling and concurrency work, and lean on AI-assisted tooling (GitHub Copilot, Claude) to ship faster without losing code quality. B.Tech from NIT Durgapur.</p>
+  </div></section>
+
+  <!-- SKILLS  · EDIT: groups + tags -->
+  <section class="block"><div class="wrap reveal">
+    <div class="head"><span class="no">02</span><h2>Skills</h2></div>
+    <div class="skillgrid">
+      <div class="skillcard">
+        <h3><span class="tick">▹</span> Languages &amp; Frameworks</h3>
+        <div class="tags"><span class="tag">Java 8</span><span class="tag">Java 17</span><span class="tag">SQL</span><span class="tag">Spring Boot</span><span class="tag">Spring MVC</span><span class="tag">Hibernate</span><span class="tag">JPA</span><span class="tag">JDBC</span><span class="tag">REST APIs</span></div>
+      </div>
+      <div class="skillcard">
+        <h3><span class="tick">▹</span> Architecture &amp; Design</h3>
+        <div class="tags"><span class="tag">Microservices</span><span class="tag">Event-Driven</span><span class="tag">Low-Level Design</span><span class="tag">SOLID</span><span class="tag">Design Patterns</span><span class="tag">Multithreading</span></div>
+      </div>
+      <div class="skillcard">
+        <h3><span class="tick">▹</span> Cloud &amp; DevOps</h3>
+        <div class="tags"><span class="tag">AWS (EC2/S3/ELB/CloudWatch)</span><span class="tag">Kubernetes (EKS)</span><span class="tag">Docker</span><span class="tag">Terraform</span><span class="tag">Jenkins</span><span class="tag">ArgoCD</span><span class="tag">Helm</span><span class="tag">CI/CD</span></div>
+      </div>
+      <div class="skillcard">
+        <h3><span class="tick">▹</span> Messaging &amp; Data</h3>
+        <div class="tags"><span class="tag">Apache Kafka</span><span class="tag">GCP Pub/Sub</span><span class="tag">Apigee</span><span class="tag">MySQL</span><span class="tag">Oracle</span><span class="tag">Databricks</span><span class="tag">OpenSearch</span></div>
+      </div>
+      <div class="skillcard">
+        <h3><span class="tick">▹</span> Frontend</h3>
+        <div class="tags"><span class="tag">Angular 14</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Bootstrap</span><span class="tag">JSP</span></div>
+      </div>
+      <div class="skillcard">
+        <h3><span class="tick">▹</span> Testing &amp; AI-assisted</h3>
+        <div class="tags"><span class="tag">JUnit 5</span><span class="tag">Mockito</span><span class="tag">JMeter</span><span class="tag">SonarQube</span><span class="tag">Postman</span><span class="tag">SoapUI</span><span class="tag">GitHub Copilot</span><span class="tag">Claude</span></div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- EXPERIENCE  · EDIT -->
+  <section class="block"><div class="wrap reveal">
+    <div class="head"><span class="no">03</span><h2>Experience</h2></div>
+    <div class="tl">
+      <div class="item">
+        <div class="when">Nov 2025 — Present</div>
+        <h3>Senior Software Engineer</h3>
+        <div class="org">Backbase · Hyderabad</div>
+        <ul>
+          <li>Senior Backend Developer on the HDFC L6 web application — scalable Java 17 / Spring Boot microservices.</li>
+          <li>Secure REST APIs via Apigee Edge (OAuth2, JWT, rate limiting); event-driven flows on Kafka &amp; GCP Pub/Sub.</li>
+          <li>GitOps delivery with ArgoCD + Helm on AWS EKS; blue-green, zero-downtime releases.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <div class="when">Jul 2024 — Oct 2025</div>
+        <h3>Senior Software Engineer</h3>
+        <div class="org">Mphasis · Hyderabad (Client: JP Morgan Chase)</div>
+        <ul>
+          <li>Real-Time Payments Orchestrator — Spring Boot microservices at 99.99% SLA, 10k+ RPS.</li>
+          <li>Cut latency 2.4s → 0.9s via multithreading + JProfiler; migrated monolith to EKS with Terraform.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <div class="when">Jun 2022 — Jun 2024</div>
+        <h3>Software Engineer</h3>
+        <div class="org">Mphasis · Hyderabad (Client: JP Morgan Chase)</div>
+        <ul>
+          <li>CCB Home Lending — event-driven microservices and a Drools-based underwriting engine.</li>
+          <li>AWS Textract OCR document pipeline; Angular 14 dashboards for loan officers.</li>
+        </ul>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- PROJECTS  · EDIT: replace with real projects from your PDF -->
+  <section class="block"><div class="wrap reveal">
+    <div class="head"><span class="no">04</span><h2>Projects</h2></div>
+    <div class="projgrid">
+      <div class="proj">
+        <div class="pno">PRJ / 01 · HDFC</div>
+        <h3>HDFC L6 Web Application</h3>
+        <p>Scalable Java 17 / Spring Boot microservices with secure Apigee Edge APIs (OAuth2, JWT), Kafka &amp; GCP Pub/Sub events, OpenSearch + Sleuth tracing, and ArgoCD/Helm GitOps on EKS with blue-green releases.</p>
+        <div class="tags"><span class="tag">Java 17</span><span class="tag">Spring Boot</span><span class="tag">Kafka</span><span class="tag">EKS</span><span class="tag">ArgoCD</span><span class="tag">Databricks</span></div>
+      </div>
+      <div class="proj">
+        <div class="pno">PRJ / 02 · JPMC</div>
+        <h3>Real-Time Payments — Orchestrator</h3>
+        <p>Spring Boot microservices at 99.99% SLA and 10k+ RPS. Latency cut 2.4s → 0.9s via multithreading (JProfiler), W3C trace-context tracing, and a Terraform-driven migration to AWS EKS that lowered infra cost ~25%.</p>
+        <div class="tags"><span class="tag">Spring Boot</span><span class="tag">Multithreading</span><span class="tag">Apigee</span><span class="tag">Terraform</span><span class="tag">Splunk</span><span class="tag">OKTA</span></div>
+      </div>
+      <div class="proj">
+        <div class="pno">PRJ / 03 · JPMC</div>
+        <h3>CCB Home Lending — Underwriting Engine</h3>
+        <p>Event-driven mortgage processing that cut loan-cycle time ~30%. Drools rules engine automated ~40% of decisioning; AWS Textract OCR cut manual entry ~70%; Angular 14 dashboards for loan officers. 98% test coverage.</p>
+        <div class="tags"><span class="tag">Drools</span><span class="tag">Kafka</span><span class="tag">AWS Textract</span><span class="tag">Angular 14</span><span class="tag">S3</span><span class="tag">JUnit</span></div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- EDUCATION + RECOGNITION -->
+  <section class="block"><div class="wrap reveal">
+    <div class="head"><span class="no">05</span><h2>Education &amp; Recognition</h2></div>
+    <div class="skillgrid">
+      <div class="skillcard">
+        <h3><span class="tick">▹</span> Education</h3>
+        <p style="color:var(--muted);margin:0 0 6px;font-size:.94rem">B.Tech — National Institute of Technology (NIT) Durgapur</p>
+        <div class="tags"><span class="tag">2018 — 2022</span></div>
+      </div>
+      <div class="skillcard">
+        <h3><span class="tick">▹</span> Awards</h3>
+        <p style="color:var(--muted);margin:0;font-size:.94rem">Kudos Award — JP Morgan Chase (2025)<br>Laurel Award — JP Morgan Chase (2024)</p>
+      </div>
+      <div class="skillcard">
+        <h3><span class="tick">▹</span> Certification</h3>
+        <p style="color:var(--muted);margin:0;font-size:.94rem">Java Full Stack Developer — SimpliLearn</p>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- CONTACT -->
+  <section class="block"><div class="wrap reveal">
+    <div class="contact-cta">
+      <span class="eyebrow">Let's build</span>
+      <h2 style="margin-top:10px">Reach out</h2>
+      <p>Open to senior backend, platform, and identity roles. The fastest way to me is below.</p>
+      <div class="links" id="contactLinks" style="justify-content:center"></div>
+    </div>
+  </div></section>
+</div>
+
+<!-- ============ 1% PREP VIEW ============ -->
+<div id="prep-view">
+  <section class="console"><div class="wrap">
+    <div class="topline">
+      <div class="reveal">
+        <span class="eyebrow">The compounding system</span>
+        <h1 style="margin-top:12px">1% Prep</h1>
+        <p class="sub">Every problem you mark <b style="color:var(--cyan)">Done</b> compounds. Small reps, every day. This is the engine room — log it, pattern it, ship it.</p>
+        <div class="quicklinks" id="prepLinks"></div>
+      </div>
+      <!-- SIGNATURE: compounding meter -->
+      <div class="compound reveal" aria-live="polite">
+        <div class="lab">Compounded growth</div>
+        <div class="mult" id="multVal">1.00×</div>
+        <div class="eq" id="multEq">1.01 ^ 0 reps logged</div>
+        <div class="bar"><i id="multBar"></i></div>
+      </div>
+    </div>
+
+    <!-- tracker tabs -->
+    <div class="tracktabs" id="tracktabs" role="tablist" aria-label="Trackers"></div>
+
+    <!-- toolbar -->
+    <div class="toolbar">
+      <label class="search">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="searchInput" type="text" placeholder="Search problems, patterns, notes…" />
+      </label>
+      <button class="btn accent" id="addBtn"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg> Add entry</button>
+      <button class="btn ghost" id="exportBtn"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg> Export</button>
+      <button class="btn ghost" id="importBtn"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21V9m0 0 4 4m-4-4-4 4M5 3h14"/></svg> Import</button>
+      <input id="importFile" type="file" accept="application/json" hidden />
+    </div>
+
+    <!-- table -->
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Problem Statement</th>
+            <th>Solution Pattern</th>
+            <th>Platform</th>
+            <th>Status</th>
+            <th>Notes</th>
+            <th>References</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <div class="empty" id="emptyState" hidden>
+      <div class="big">Nothing logged here yet</div>
+      <div>Hit <b style="color:var(--amber)">Add entry</b> to log your first rep in this track.</div>
+    </div>
+  </div></section>
+</div>
+
+<footer class="foot"><div class="wrap">
+  Built by Yash Arya · Data lives in your browser &amp; in <b>Export</b> files — <span id="totalFoot">0</span> reps logged · <span class="mono">1% better, every day</span>
+</div></footer>
+
+<!-- ============ MODAL ============ -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <header>
+      <h3 id="modalTitle">Add entry</h3>
+      <button class="iconbtn" id="modalClose" aria-label="Close">✕</button>
+    </header>
+    <div class="body">
+      <div class="field"><label>Problem statement</label><input id="f_prob" placeholder="e.g. Longest substring without repeating characters" /></div>
+      <div class="grid2">
+        <div class="field"><label>Solution pattern</label><input id="f_pattern" placeholder="e.g. Sliding Window" /></div>
+        <div class="field"><label>Platform</label><input id="f_platform" placeholder="e.g. LeetCode" /></div>
+      </div>
+      <div class="field"><label>Status</label>
+        <select id="f_status"><option>Todo</option><option>Doing</option><option>Done</option></select>
+      </div>
+      <div class="field"><label>Notes</label><textarea id="f_notes" placeholder="The signal that told you the pattern; edge cases; complexity…"></textarea></div>
+      <div class="field"><label>References (URL or text)</label><input id="f_refs" placeholder="https://leetcode.com/problems/…" /></div>
+    </div>
+    <footer>
+      <button class="btn ghost" id="modalCancel">Cancel</button>
+      <button class="btn accent" id="modalSave">Save entry</button>
+    </footer>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   EDIT: your profile + links here
+   ========================================================= */
+const PROFILE = {
+  initials: "YN",
+  links: [
+    { label:"GitHub",    url:"https://github.com/yashwantharya",       primary:false },
+    { label:"LinkedIn",  url:"https://linkedin.com/in/yashwantharya",  primary:false },
+    { label:"LeetCode",  url:"https://leetcode.com/u/yashwantharya",   primary:false },
+    { label:"Medium",    url:"https://medium.com/@yashwantharya",      primary:false },
+    { label:"Email",     url:"mailto:yashwantharya465@gmail.com",      primary:true  },
+    // ⚠ Email is your real one. VERIFY the GitHub/LinkedIn/LeetCode/Medium handles
+    //   above and fix any that differ. Add HackerRank/CodeChef/portfolio as needed.
+  ]
+};
+
+/* tracker definitions (the 6 tracks) */
+const TRACKS = [
+  { id:"ds",     name:"DSA" },
+  { id:"system", name:"System Design" },
+  { id:"lld",    name:"LLD" },
+  { id:"java",   name:"Java Concepts" },
+  { id:"sql",    name:"SQL / DB" },
+  { id:"ai",     name:"AI" },
+];
+
+/* starter rows — edit / delete freely, or clear with Export then trim */
+const SEED = {
+  ds: [
+    { prob:"Longest substring without repeating characters", pattern:"Sliding Window", platform:"LeetCode", status:"Done",  notes:"Signal: contiguous substring + a constraint → window. Shrink left on duplicate.", refs:"https://leetcode.com/problems/longest-substring-without-repeating-characters/" },
+    { prob:"Two Sum (sorted)", pattern:"Two Pointers", platform:"LeetCode", status:"Done", notes:"Sorted array + find pair → two pointers from both ends.", refs:"" },
+    { prob:"Course Schedule", pattern:"Topological Sort", platform:"LeetCode", status:"Doing", notes:"Dependencies / 'must come before' → topo sort (Kahn's / DFS cycle check).", refs:"" },
+    { prob:"Number of Islands", pattern:"BFS / DFS / Union-Find", platform:"NeetCode", status:"Todo", notes:"Connected groups in a grid → flood fill.", refs:"" },
+  ],
+  system: [
+    { prob:"Design a URL shortener", pattern:"Hashing + KV store + cache", platform:"Xu Vol 1", status:"Doing", notes:"Base62, collision strategy, read-heavy → cache + CDN.", refs:"" },
+    { prob:"Design HDFC login on Keycloak (your own system)", pattern:"OIDC + session store + fan-out", platform:"Self", status:"Todo", notes:"Write up your real work: components, failure modes, scaling. Interview gold.", refs:"" },
+  ],
+  lld: [
+    { prob:"Design a rate limiter", pattern:"Strategy + token bucket", platform:"Self", status:"Todo", notes:"Interfaces for algorithms; thread-safety.", refs:"" },
+  ],
+  java: [
+    { prob:"HashMap internals (load factor, treeify)", pattern:"Collections deep-dive", platform:"Docs", status:"Todo", notes:"Buckets, resize at 0.75, red-black tree after 8 collisions.", refs:"" },
+    { prob:"CompletableFuture vs ExecutorService", pattern:"Concurrency", platform:"Self", status:"Todo", notes:"When to use which; common pitfalls.", refs:"" },
+  ],
+  sql: [
+    { prob:"Nth highest salary", pattern:"Window functions / subquery", platform:"LeetCode", status:"Todo", notes:"DENSE_RANK() vs LIMIT/OFFSET tradeoffs.", refs:"" },
+    { prob:"Index design for a read-heavy table", pattern:"Indexing", platform:"Self", status:"Todo", notes:"Composite index column order; covering indexes.", refs:"" },
+  ],
+  ai: [
+    { prob:"Build a small RAG app", pattern:"Retrieval-Augmented Generation", platform:"Project", status:"Todo", notes:"Chunking, embeddings, vector store, prompt assembly.", refs:"" },
+    { prob:"Tool-calling agent (banking angle)", pattern:"Agentic / function calling", platform:"Project", status:"Todo", notes:"Tie to Backbase's agentic direction — auth + tools.", refs:"" },
+  ],
+};
+
+/* =========================================================
+   storage (localStorage; degrades gracefully in sandboxes)
+   ========================================================= */
+const STORE_KEY = "prep1pct:v2";
+let DATA = loadData();
+let currentTrack = TRACKS[0].id;
+let editingId = null;
+
+function loadData(){
+  try{
+    const raw = localStorage.getItem(STORE_KEY);
+    if(raw) return JSON.parse(raw);
+  }catch(e){ /* storage blocked (e.g. preview iframe) — fall back to seed in memory */ }
+  // first run: build from SEED with ids
+  const d = {};
+  TRACKS.forEach(t=>{
+    d[t.id] = (SEED[t.id]||[]).map(r=>({ id:uid(), date:today(), ...r }));
+  });
+  return d;
+}
+function saveData(){
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify(DATA)); }
+  catch(e){ /* no-op when storage unavailable */ }
+}
+function uid(){ return "r"+Math.random().toString(36).slice(2,9); }
+function today(){ return new Date().toISOString().slice(0,10); }
+function esc(s){ return (s||"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+/* =========================================================
+   render: hero/links
+   ========================================================= */
+function renderLinks(){
+  document.getElementById("brandKey").textContent = PROFILE.initials;
+  const chip = (l)=>`<a class="chip ${l.primary?'primary':''}" href="${esc(l.url)}" target="_blank" rel="noopener">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 14 21 3M21 3h-6M21 3v6M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+      ${esc(l.label)}</a>`;
+  document.getElementById("heroLinks").innerHTML = PROFILE.links.map(chip).join("");
+  document.getElementById("contactLinks").innerHTML = PROFILE.links.map(chip).join("");
+  document.getElementById("prepLinks").innerHTML = PROFILE.links.map(chip).join("");
+}
+
+/* =========================================================
+   render: tracker tabs
+   ========================================================= */
+function renderTabs(){
+  const el = document.getElementById("tracktabs");
+  el.innerHTML = TRACKS.map(t=>{
+    const rows = DATA[t.id]||[];
+    const done = rows.filter(r=>r.status==="Done").length;
+    return `<button class="tracktab" role="tab" data-track="${t.id}"
+      aria-selected="${t.id===currentTrack}">${esc(t.name)}<span class="ct">${done}/${rows.length}</span></button>`;
+  }).join("");
+  el.querySelectorAll(".tracktab").forEach(b=>{
+    b.addEventListener("click",()=>{ currentTrack=b.dataset.track; renderTabs(); renderTable(); });
+  });
+}
+
+/* =========================================================
+   render: table
+   ========================================================= */
+function renderTable(){
+  const q = (document.getElementById("searchInput").value||"").toLowerCase().trim();
+  let rows = (DATA[currentTrack]||[]).slice();
+  if(q){
+    rows = rows.filter(r=>[r.prob,r.pattern,r.platform,r.notes,r.refs].join(" ").toLowerCase().includes(q));
+  }
+  const tb = document.getElementById("tbody");
+  const empty = document.getElementById("emptyState");
+  document.querySelector(".tablewrap").style.display = rows.length ? "" : "none";
+  empty.hidden = rows.length>0;
+
+  tb.innerHTML = rows.map(r=>{
+    const refCell = r.refs
+      ? (/^https?:\/\//.test(r.refs)
+          ? `<a href="${esc(r.refs)}" target="_blank" rel="noopener">link ↗</a>`
+          : esc(r.refs))
+      : `<span style="color:var(--faint)">—</span>`;
+    return `<tr data-id="${r.id}">
+      <td class="prob">${esc(r.prob)}</td>
+      <td><span class="pill" style="color:var(--cyan);border-color:rgba(70,214,196,.4)">${esc(r.pattern||"—")}</span></td>
+      <td><span class="pill platform">${esc(r.platform||"—")}</span></td>
+      <td><button class="status" data-s="${esc(r.status)}" data-act="cycle">${esc(r.status)}</button></td>
+      <td class="notes">${esc(r.notes)||'<span style="color:var(--faint)">—</span>'}</td>
+      <td class="refs">${refCell}</td>
+      <td><div class="rowact">
+        <button class="iconbtn" data-act="edit" title="Edit">✎</button>
+        <button class="iconbtn del" data-act="del" title="Delete">🗑</button>
+      </div></td>
+    </tr>`;
+  }).join("");
+
+  tb.querySelectorAll("[data-act]").forEach(btn=>{
+    const id = btn.closest("tr").dataset.id;
+    const act = btn.dataset.act;
+    btn.addEventListener("click",()=>{
+      if(act==="del") delEntry(id);
+      else if(act==="edit") openModal(id);
+      else if(act==="cycle") cycleStatus(id);
+    });
+  });
+  renderCompound();
+}
+
+/* =========================================================
+   signature: compounding meter
+   ========================================================= */
+function totalDone(){
+  let n=0; TRACKS.forEach(t=>{ (DATA[t.id]||[]).forEach(r=>{ if(r.status==="Done") n++; }); });
+  return n;
+}
+function renderCompound(){
+  const n = totalDone();
+  const mult = Math.pow(1.01, n);
+  document.getElementById("multVal").textContent = mult.toFixed(2)+"×";
+  document.getElementById("multEq").textContent = "1.01 ^ "+n+" reps done";
+  // bar fills toward the next milestone of 50 reps
+  const pct = Math.min(100, (n % 50)/50*100 || (n>0?100:0));
+  document.getElementById("multBar").style.width = (n===0?0:Math.max(6,pct))+"%";
+  document.getElementById("totalFoot").textContent = n;
+}
+
+/* =========================================================
+   actions: status cycle, delete, add/edit via modal
+   ========================================================= */
+function findRow(id){ return (DATA[currentTrack]||[]).find(r=>r.id===id); }
+function cycleStatus(id){
+  const r = findRow(id); if(!r) return;
+  const order=["Todo","Doing","Done"];
+  r.status = order[(order.indexOf(r.status)+1)%3];
+  saveData(); renderTabs(); renderTable();
+}
+function delEntry(id){
+  if(!confirm("Delete this entry?")) return;
+  DATA[currentTrack] = (DATA[currentTrack]||[]).filter(r=>r.id!==id);
+  saveData(); renderTabs(); renderTable();
+}
+function openModal(id){
+  editingId = id || null;
+  const r = id ? findRow(id) : {prob:"",pattern:"",platform:"",status:"Todo",notes:"",refs:""};
+  document.getElementById("modalTitle").textContent = id ? "Edit entry" : "Add entry";
+  document.getElementById("f_prob").value = r.prob||"";
+  document.getElementById("f_pattern").value = r.pattern||"";
+  document.getElementById("f_platform").value = r.platform||"";
+  document.getElementById("f_status").value = r.status||"Todo";
+  document.getElementById("f_notes").value = r.notes||"";
+  document.getElementById("f_refs").value = r.refs||"";
+  document.getElementById("modalBg").classList.add("open");
+  document.getElementById("f_prob").focus();
+}
+function closeModal(){ document.getElementById("modalBg").classList.remove("open"); editingId=null; }
+function saveModal(){
+  const payload = {
+    prob: document.getElementById("f_prob").value.trim(),
+    pattern: document.getElementById("f_pattern").value.trim(),
+    platform: document.getElementById("f_platform").value.trim(),
+    status: document.getElementById("f_status").value,
+    notes: document.getElementById("f_notes").value.trim(),
+    refs: document.getElementById("f_refs").value.trim(),
+  };
+  if(!payload.prob){ document.getElementById("f_prob").focus(); return; }
+  if(editingId){
+    Object.assign(findRow(editingId), payload);
+  }else{
+    (DATA[currentTrack] ||= []).unshift({ id:uid(), date:today(), ...payload });
+  }
+  saveData(); closeModal(); renderTabs(); renderTable();
+}
+
+/* =========================================================
+   export / import
+   ========================================================= */
+function exportData(){
+  const blob = new Blob([JSON.stringify(DATA,null,2)],{type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "1pct-prep-"+today()+".json";
+  a.click(); URL.revokeObjectURL(a.href);
+}
+function importData(file){
+  const fr = new FileReader();
+  fr.onload = ()=>{
+    try{
+      const obj = JSON.parse(fr.result);
+      TRACKS.forEach(t=>{ if(!Array.isArray(obj[t.id])) obj[t.id]=[]; });
+      DATA = obj; saveData(); renderTabs(); renderTable();
+    }catch(e){ alert("That file isn't a valid prep export."); }
+  };
+  fr.readAsText(file);
+}
+
+/* =========================================================
+   view toggle (Resume / Prep)
+   ========================================================= */
+function setView(v){
+  const resume = v==="resume";
+  document.getElementById("resume-view").classList.toggle("hidden",!resume);
+  document.getElementById("prep-view").classList.toggle("active",!resume);
+  document.getElementById("tabResume").setAttribute("aria-pressed", resume);
+  document.getElementById("tabPrep").setAttribute("aria-pressed", !resume);
+  window.scrollTo({top:0,behavior:"instant" in window ? "instant":"auto"});
+  if(location.hash !== (resume?"#resume":"#prep")) history.replaceState(null,"",resume?"#resume":"#prep");
+}
+
+/* =========================================================
+   reveal on scroll
+   ========================================================= */
+function initReveal(){
+  const io = new IntersectionObserver((ents)=>{
+    ents.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+  },{threshold:.12});
+  document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+}
+
+/* =========================================================
+   wire up
+   ========================================================= */
+document.getElementById("tabResume").addEventListener("click",()=>setView("resume"));
+document.getElementById("tabPrep").addEventListener("click",()=>setView("prep"));
+document.getElementById("addBtn").addEventListener("click",()=>openModal(null));
+document.getElementById("modalClose").addEventListener("click",closeModal);
+document.getElementById("modalCancel").addEventListener("click",closeModal);
+document.getElementById("modalSave").addEventListener("click",saveModal);
+document.getElementById("modalBg").addEventListener("click",e=>{ if(e.target.id==="modalBg") closeModal(); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeModal(); });
+document.getElementById("searchInput").addEventListener("input",renderTable);
+document.getElementById("exportBtn").addEventListener("click",exportData);
+document.getElementById("importBtn").addEventListener("click",()=>document.getElementById("importFile").click());
+document.getElementById("importFile").addEventListener("change",e=>{ if(e.target.files[0]) importData(e.target.files[0]); });
+
+renderLinks();
+renderTabs();
+renderTable();
+initReveal();
+if(location.hash==="#prep") setView("prep");
+</script>
+</body>
+</html>
