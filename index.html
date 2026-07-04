@@ -3,8 +3,25 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Yash Arya — Backend Engineer · 1% Prep</title>
-<meta name="description" content="Yashwanth (Yash Arya) — Backend Engineer. Resume and a 1% compounding prep tracker for DSA, System Design, LLD, Java, SQL and AI." />
+<title>Yash Arya · Portfolio</title>
+<meta name="description" content="Yashwanth Nagaraboina (Yash Arya) — Senior Backend Engineer. Java · Spring Boot · Microservices · AWS. Portfolio and a 1% compounding prep tracker." />
+
+<!-- branded tab icon (inline, no extra file) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiNmZmMyNGIiLz48dGV4dCB4PSIzMiIgeT0iNDUiIGZvbnQtZmFtaWx5PSJBcmlhbCxWZXJkYW5hLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzAiIGZvbnQtd2VpZ2h0PSI3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMzYTI0MDAiPllOPC90ZXh0Pjwvc3ZnPg==" />
+
+<!-- link preview card (LinkedIn / WhatsApp / Slack / X). og:image must be the live absolute URL. -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Yash Arya" />
+<meta property="og:title" content="Yash Arya · Portfolio" />
+<meta property="og:description" content="Senior Backend Engineer — Java · Spring Boot · Microservices · AWS. Portfolio + 1% prep tracker." />
+<meta property="og:url" content="https://yashwanthnagaraboina.github.io/" />
+<meta property="og:image" content="https://yashwanthnagaraboina.github.io/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Yash Arya · Portfolio" />
+<meta name="twitter:description" content="Senior Backend Engineer — Java · Spring Boot · Microservices · AWS." />
+<meta name="twitter:image" content="https://yashwanthnagaraboina.github.io/og.png" />
 
 <!--
   ============================================================
@@ -20,6 +37,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 :root{
@@ -213,6 +232,7 @@ section.block{padding:54px 0;border-top:1px solid var(--line-soft)}
 .btn.accent{background:linear-gradient(135deg,var(--amber),var(--amber-deep));color:#3a2400;border-color:transparent;font-weight:600}
 .btn.ghost{background:transparent;color:var(--muted)}
 .btn .ic{width:14px;height:14px}
+.sync{font-family:var(--fmono);font-size:.72rem;color:var(--faint);margin-left:auto;white-space:nowrap;align-self:center}
 
 /* table */
 .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}
@@ -462,6 +482,7 @@ footer.foot b{color:var(--amber)}
       <button class="btn ghost" id="exportBtn"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg> Export</button>
       <button class="btn ghost" id="importBtn"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21V9m0 0 4 4m-4-4-4 4M5 3h14"/></svg> Import</button>
       <input id="importFile" type="file" accept="application/json" hidden />
+      <span id="syncStatus" class="sync">● Local only</span>
     </div>
 
     <!-- table -->
@@ -543,32 +564,37 @@ const TRACKS = [
   { id:"ai",     name:"AI" },
 ];
 
-/* starter rows — edit / delete freely, or clear with Export then trim */
+/* first-run seed = your real exported data. Only used to populate the DB
+   the very first time (when the table is empty). After that, Supabase is
+   the source of truth. Edit/delete/add all happen in the app + cloud. */
 const SEED = {
   ds: [
-    { prob:"Longest substring without repeating characters", pattern:"Sliding Window", platform:"LeetCode", status:"Done",  notes:"Signal: contiguous substring + a constraint → window. Shrink left on duplicate.", refs:"https://leetcode.com/problems/longest-substring-without-repeating-characters/" },
-    { prob:"Two Sum (sorted)", pattern:"Two Pointers", platform:"LeetCode", status:"Done", notes:"Sorted array + find pair → two pointers from both ends.", refs:"" },
-    { prob:"Course Schedule", pattern:"Topological Sort", platform:"LeetCode", status:"Doing", notes:"Dependencies / 'must come before' → topo sort (Kahn's / DFS cycle check).", refs:"" },
-    { prob:"Number of Islands", pattern:"BFS / DFS / Union-Find", platform:"NeetCode", status:"Todo", notes:"Connected groups in a grid → flood fill.", refs:"" },
+    { id:"r9yktl8g", date:"2026-07-02", prob:"1. Two Sum", pattern:"HashMap", platform:"Leetcode", status:"Done", notes:"Map<Integer, Integer> map = new HashMap<>((int) (nums.length / 0.75) + 1);\n\n        for (int a = 0; a < nums.length; a++) {\n\n            if (map.get(target - nums[a]) != null) {\n                return new int[] { map.get(target - nums[a]), a };\n            } else {\n                map.put(nums[a], a);\n            }\n        }\n        return new int[2];", refs:"https://leetcode.com/problems/two-sum/" },
+    { id:"rrbqnkim", date:"2026-07-02", prob:"242. Valid Anagram", pattern:"ASCII and compare", platform:"Leetcode", status:"Done", notes:"int[] alphaTrain = new int[58];\n        for (int i = 0; i < sL; i++) {\n            alphaTrain[s.charAt(i) - 'A']++;\n            alphaTrain[t.charAt(i) - 'A']--;\n        }", refs:"https://leetcode.com/problems/valid-anagram/" },
+    { id:"r0upx427", date:"2026-07-01", prob:"217. Contains Duplicate", pattern:"HashSet(n/0.75+1) or HashMap", platform:"Leetcode", status:"Done", notes:"HashSet(n/0.75+1) or HashMap also internal sorting(Insertion Sort) at each level", refs:"https://leetcode.com/problems/contains-duplicate/description/" },
+    { id:"rsqguicb", date:"2026-06-29", prob:"Longest substring without repeating characters", pattern:"Sliding Window", platform:"LeetCode", status:"Done", notes:"Signal: contiguous substring + a constraint → window. Shrink left on duplicate.", refs:"https://leetcode.com/problems/longest-substring-without-repeating-characters/" },
+    { id:"rnwxfiuf", date:"2026-06-29", prob:"Two Sum (sorted)", pattern:"Two Pointers", platform:"LeetCode", status:"Done", notes:"Sorted array + find pair → two pointers from both ends.", refs:"" },
+    { id:"rww1udic", date:"2026-06-29", prob:"Course Schedule", pattern:"Topological Sort", platform:"LeetCode", status:"Doing", notes:"Dependencies / 'must come before' → topo sort (Kahn's / DFS cycle check).", refs:"" },
+    { id:"rj1zbfn8", date:"2026-06-29", prob:"Number of Islands", pattern:"BFS / DFS / Union-Find", platform:"NeetCode", status:"Todo", notes:"Connected groups in a grid → flood fill.", refs:"" },
   ],
   system: [
-    { prob:"Design a URL shortener", pattern:"Hashing + KV store + cache", platform:"Xu Vol 1", status:"Doing", notes:"Base62, collision strategy, read-heavy → cache + CDN.", refs:"" },
-    { prob:"Design HDFC login on Keycloak (your own system)", pattern:"OIDC + session store + fan-out", platform:"Self", status:"Todo", notes:"Write up your real work: components, failure modes, scaling. Interview gold.", refs:"" },
+    { id:"ri39d3fs", date:"2026-06-29", prob:"Design a URL shortener", pattern:"Hashing + KV store + cache", platform:"Xu Vol 1", status:"Doing", notes:"Base62, collision strategy, read-heavy → cache + CDN.", refs:"" },
+    { id:"reaybtvb", date:"2026-06-29", prob:"Design HDFC login on Keycloak (your own system)", pattern:"OIDC + session store + fan-out", platform:"Self", status:"Todo", notes:"Write up your real work: components, failure modes, scaling. Interview gold.", refs:"" },
   ],
   lld: [
-    { prob:"Design a rate limiter", pattern:"Strategy + token bucket", platform:"Self", status:"Todo", notes:"Interfaces for algorithms; thread-safety.", refs:"" },
+    { id:"rfwsrciz", date:"2026-06-29", prob:"Design a rate limiter", pattern:"Strategy + token bucket", platform:"Self", status:"Todo", notes:"Interfaces for algorithms; thread-safety.", refs:"" },
   ],
   java: [
-    { prob:"HashMap internals (load factor, treeify)", pattern:"Collections deep-dive", platform:"Docs", status:"Todo", notes:"Buckets, resize at 0.75, red-black tree after 8 collisions.", refs:"" },
-    { prob:"CompletableFuture vs ExecutorService", pattern:"Concurrency", platform:"Self", status:"Todo", notes:"When to use which; common pitfalls.", refs:"" },
+    { id:"rmn6ovfg", date:"2026-06-29", prob:"HashMap internals (load factor, treeify)", pattern:"Collections deep-dive", platform:"Docs", status:"Todo", notes:"Buckets, resize at 0.75, red-black tree after 8 collisions.", refs:"" },
+    { id:"rlp5amr6", date:"2026-06-29", prob:"CompletableFuture vs ExecutorService", pattern:"Concurrency", platform:"Self", status:"Todo", notes:"When to use which; common pitfalls.", refs:"" },
   ],
   sql: [
-    { prob:"Nth highest salary", pattern:"Window functions / subquery", platform:"LeetCode", status:"Todo", notes:"DENSE_RANK() vs LIMIT/OFFSET tradeoffs.", refs:"" },
-    { prob:"Index design for a read-heavy table", pattern:"Indexing", platform:"Self", status:"Todo", notes:"Composite index column order; covering indexes.", refs:"" },
+    { id:"rfvwd716", date:"2026-06-29", prob:"Nth highest salary", pattern:"Window functions / subquery", platform:"LeetCode", status:"Todo", notes:"DENSE_RANK() vs LIMIT/OFFSET tradeoffs.", refs:"" },
+    { id:"rx67spg2", date:"2026-06-29", prob:"Index design for a read-heavy table", pattern:"Indexing", platform:"Self", status:"Todo", notes:"Composite index column order; covering indexes.", refs:"" },
   ],
   ai: [
-    { prob:"Build a small RAG app", pattern:"Retrieval-Augmented Generation", platform:"Project", status:"Todo", notes:"Chunking, embeddings, vector store, prompt assembly.", refs:"" },
-    { prob:"Tool-calling agent (banking angle)", pattern:"Agentic / function calling", platform:"Project", status:"Todo", notes:"Tie to Backbase's agentic direction — auth + tools.", refs:"" },
+    { id:"rpingouh", date:"2026-06-29", prob:"Build a small RAG app", pattern:"Retrieval-Augmented Generation", platform:"Project", status:"Todo", notes:"Chunking, embeddings, vector store, prompt assembly.", refs:"" },
+    { id:"rq701a5r", date:"2026-06-29", prob:"Tool-calling agent (banking angle)", pattern:"Agentic / function calling", platform:"Project", status:"Todo", notes:"Tie to Backbase's agentic direction — auth + tools.", refs:"" },
   ],
 };
 
@@ -576,29 +602,97 @@ const SEED = {
    storage (localStorage; degrades gracefully in sandboxes)
    ========================================================= */
 const STORE_KEY = "prep1pct:v2";
-let DATA = loadData();
+
+/* Supabase config — the anon key is PUBLIC-SAFE because Row Level Security
+   is enabled on the table. Never put the DB password / connection string here. */
+const SB_URL   = "https://testgsfszbkbpvsygdtv.supabase.co";
+const SB_KEY   = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRlc3Rnc2ZzemJrYnB2c3lnZHR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMxNDUwNzIsImV4cCI6MjA5ODcyMTA3Mn0.PtRTHuiwS_ImXoGpCx5K4CnxsgFDVpzo0Pb6XQF887M";
+const SB_TABLE = "prep_entries";
+let SB = null;
+try{ if(window.supabase && SB_URL && SB_KEY) SB = window.supabase.createClient(SB_URL, SB_KEY); }catch(e){}
+
+let DATA = {};
 let currentTrack = TRACKS[0].id;
 let editingId = null;
 
-function loadData(){
-  try{
-    const raw = localStorage.getItem(STORE_KEY);
-    if(raw) return JSON.parse(raw);
-  }catch(e){ /* storage blocked (e.g. preview iframe) — fall back to seed in memory */ }
-  // first run: build from SEED with ids
-  const d = {};
-  TRACKS.forEach(t=>{
-    d[t.id] = (SEED[t.id]||[]).map(r=>({ id:uid(), date:today(), ...r }));
-  });
-  return d;
-}
-function saveData(){
-  try{ localStorage.setItem(STORE_KEY, JSON.stringify(DATA)); }
-  catch(e){ /* no-op when storage unavailable */ }
-}
 function uid(){ return "r"+Math.random().toString(36).slice(2,9); }
 function today(){ return new Date().toISOString().slice(0,10); }
 function esc(s){ return (s||"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+/* map an in-memory row to the exact DB columns (drops date/created_at) */
+function toRow(r){ return { id:r.id, track:r.track, prob:r.prob, pattern:r.pattern||"", platform:r.platform||"", status:r.status||"Todo", notes:r.notes||"", refs:r.refs||"" }; }
+
+/* ---- local cache: offline backup + instant first paint ---- */
+function saveLocal(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(DATA)); }catch(e){} }
+function normalizeGrouped(obj){
+  const d={}; TRACKS.forEach(t=>{ d[t.id]=(Array.isArray(obj[t.id])?obj[t.id]:[]).map(r=>({...r, track:t})); });
+  return d;
+}
+function seedGrouped(){
+  const d={}; TRACKS.forEach(t=>{ d[t.id]=(SEED[t.id]||[]).map(r=>({...r, track:t})); });
+  return d;
+}
+function loadLocal(){
+  try{ const raw=localStorage.getItem(STORE_KEY); if(raw) return normalizeGrouped(JSON.parse(raw)); }catch(e){}
+  return seedGrouped();
+}
+function groupFlat(rows){
+  const d={}; TRACKS.forEach(t=>d[t.id]=[]);
+  (rows||[]).forEach(r=>{ if(!d[r.track]) d[r.track]=[]; d[r.track].push(r); });
+  return d;
+}
+
+/* ---- sync status pill ---- */
+function setStatus(state){
+  const el=document.getElementById("syncStatus"); if(!el) return;
+  const map={
+    load:["☁ Loading…","var(--muted)"],
+    sync:["☁ Saving…","var(--muted)"],
+    ok:["☁ Saved","var(--cyan)"],
+    offline:["⚠ Offline · saved locally","var(--amber)"],
+    local:["● Local only","var(--faint)"],
+  };
+  const [txt,col]=map[state]||map.local;
+  el.textContent=txt; el.style.color=col;
+}
+
+/* ---- cloud persist helpers (optimistic: UI updates first, then DB) ---- */
+async function persist(row){
+  saveLocal();
+  if(!SB){ setStatus("local"); return; }
+  setStatus("sync");
+  const { error } = await SB.from(SB_TABLE).upsert(toRow(row));
+  setStatus(error?"offline":"ok");
+  if(error) console.warn("upsert failed:",error);
+}
+async function removeCloud(id){
+  saveLocal();
+  if(!SB){ setStatus("local"); return; }
+  setStatus("sync");
+  const { error } = await SB.from(SB_TABLE).delete().eq("id",id);
+  setStatus(error?"offline":"ok");
+  if(error) console.warn("delete failed:",error);
+}
+
+/* ---- boot: pull from cloud; seed the table on very first run ---- */
+async function boot(){
+  if(!SB){ setStatus("local"); return; }
+  setStatus("load");
+  try{
+    let { data, error } = await SB.from(SB_TABLE).select("*").order("created_at",{ascending:false});
+    if(error) throw error;
+    if(!data || data.length===0){
+      const rows=[]; TRACKS.forEach(t=>(SEED[t.id]||[]).forEach(r=>rows.push(toRow({...r, track:t}))));
+      if(rows.length){ const ins=await SB.from(SB_TABLE).insert(rows); if(ins.error) throw ins.error; }
+      data=rows;
+    }
+    DATA=groupFlat(data); saveLocal();
+    renderTabs(); renderTable(); setStatus("ok");
+  }catch(e){
+    console.warn("Supabase load failed — using local cache:",e);
+    setStatus("offline");
+  }
+}
 
 /* =========================================================
    render: hero/links
@@ -701,12 +795,12 @@ function cycleStatus(id){
   const r = findRow(id); if(!r) return;
   const order=["Todo","Doing","Done"];
   r.status = order[(order.indexOf(r.status)+1)%3];
-  saveData(); renderTabs(); renderTable();
+  renderTabs(); renderTable(); persist(r);
 }
 function delEntry(id){
   if(!confirm("Delete this entry?")) return;
   DATA[currentTrack] = (DATA[currentTrack]||[]).filter(r=>r.id!==id);
-  saveData(); renderTabs(); renderTable();
+  renderTabs(); renderTable(); removeCloud(id);
 }
 function openModal(id){
   editingId = id || null;
@@ -732,12 +826,14 @@ function saveModal(){
     refs: document.getElementById("f_refs").value.trim(),
   };
   if(!payload.prob){ document.getElementById("f_prob").focus(); return; }
+  let row;
   if(editingId){
-    Object.assign(findRow(editingId), payload);
+    row = findRow(editingId); Object.assign(row, payload);
   }else{
-    (DATA[currentTrack] ||= []).unshift({ id:uid(), date:today(), ...payload });
+    row = { id:uid(), track:currentTrack, date:today(), ...payload };
+    (DATA[currentTrack] ||= []).unshift(row);
   }
-  saveData(); closeModal(); renderTabs(); renderTable();
+  closeModal(); renderTabs(); renderTable(); persist(row);
 }
 
 /* =========================================================
@@ -752,11 +848,17 @@ function exportData(){
 }
 function importData(file){
   const fr = new FileReader();
-  fr.onload = ()=>{
+  fr.onload = async ()=>{
     try{
       const obj = JSON.parse(fr.result);
-      TRACKS.forEach(t=>{ if(!Array.isArray(obj[t.id])) obj[t.id]=[]; });
-      DATA = obj; saveData(); renderTabs(); renderTable();
+      DATA = normalizeGrouped(obj);
+      saveLocal(); renderTabs(); renderTable();
+      if(SB){
+        setStatus("sync");
+        const rows=[]; TRACKS.forEach(t=>DATA[t.id].forEach(r=>rows.push(toRow(r))));
+        const { error } = await SB.from(SB_TABLE).upsert(rows);
+        setStatus(error?"offline":"ok");
+      }
     }catch(e){ alert("That file isn't a valid prep export."); }
   };
   fr.readAsText(file);
@@ -802,10 +904,12 @@ document.getElementById("importBtn").addEventListener("click",()=>document.getEl
 document.getElementById("importFile").addEventListener("change",e=>{ if(e.target.files[0]) importData(e.target.files[0]); });
 
 renderLinks();
+DATA = loadLocal();      // instant paint from cache/seed
 renderTabs();
 renderTable();
 initReveal();
 if(location.hash==="#prep") setView("prep");
+boot();                  // refresh from Supabase, seed table on first run
 </script>
 </body>
 </html>
